@@ -7,9 +7,9 @@ on:
     branches: ## trigger for pull request targeted towards the below branches
       - main
       - 'dev-*' #any branch starting with  dev- e.g dev-new. dev-this-is-new
-    branches-ignore:  ## DON'T trigger for pull request targeted towards the below branches
-      - 'fix/**'
-      - 'dev-fix-**'
+#    branches-ignore:  ## DON'T trigger for pull request targeted towards the below branches
+#      - 'fix/**'
+#      - 'dev-fix-**'
 #    paths-ignore: # if any file within a pull request to branches above is changed in doc folder, don't trigger
 #      - 'doc/**'
   workflow_dispatch:
