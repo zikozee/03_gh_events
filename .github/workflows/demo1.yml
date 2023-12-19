@@ -1,11 +1,27 @@
 name: Events Demo 1
 on:
   pull_request:
-  #  types: [opened, closed, reopened]
+  #  types: [opened, closed, reopened]   --->> Activity types
     types:
       - opened
+    branches: ## trigger for pull request targeted towards the below branches
+      - main
+      - 'dev-*' #any branch starting with  dev- e.g dev-new. dev-this-is-new
+    branches-ignore:  ## DON'T trigger for pull request targeted towards the below branches
+      - 'fix/**'
+      - 'dev-fix-**'
+#    paths-ignore: # if any file within a pull request to branches above is changed in doc folder, don't trigger
+#      - 'doc/**'
   workflow_dispatch:
-
+  push:
+    branches:
+      - main
+      - dev
+      - 'feat/**' # ** allows for further slashes down the path e.g feat/new_feat, feat/button/color
+  #  paths:  #if any file within a push that matches branched above contains any file with .js, trigger
+    #  - '**.js'
+    paths:
+      - '.github/workflows/*' # if any file with .github/workflows is changed on push to dev or main branch or feat/**, TRIGGER
 jobs:
   deploy:
     runs-on: ubuntu-latest
